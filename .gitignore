@@ -12,3 +12,4 @@ mod/out/
 
 # Vercel
 .vercel/
+.vercel
