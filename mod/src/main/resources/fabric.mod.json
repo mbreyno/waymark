@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "waymark",
+	"version": "${version}",
+	"name": "Waymark",
+	"description": "A simple server-side /home mod. Set up to 3 homes through an in-game menu, then teleport, rename, or delete them — no client mod required.",
+	"authors": [
+		"Michael Reynolds"
+	],
+	"contact": {
+		"homepage": "https://waymark.homes",
+		"sources": "https://github.com/mbreyno/waymark",
+		"issues": "https://github.com/mbreyno/waymark/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/waymark/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"homes.waymark.Waymark"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.0",
+		"minecraft": ">=26.1.2 <=26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

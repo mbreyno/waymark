@@ -1,0 +1,14 @@
+# Gradle / build output
+mod/.gradle/
+mod/build/
+mod/run/
+mod/out/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Vercel
+.vercel/

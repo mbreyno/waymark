@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waymark — a /home mod for Fabric servers</title>
+<meta name="description" content="Waymark is a simple server-side /home mod for Fabric. Set up to 3 homes through an in-game menu, then teleport, rename, or delete them. No client mod required.">
+<link rel="icon" type="image/png" href="icon.png">
+<meta property="og:title" content="Waymark — a /home mod for Fabric servers">
+<meta property="og:description" content="Set up to 3 homes through an in-game menu, then teleport, rename, or delete them. No client mod required.">
+<meta property="og:image" content="https://waymark.homes/icon.png">
+<meta property="og:url" content="https://waymark.homes">
+<style>
+  :root {
+    --bg: #0d1b2a;
+    --bg-card: #14263c;
+    --bg-card-2: #18314f;
+    --ink: #f4f1de;
+    --ink-dim: #9db4c7;
+    --teal: #2a9d8f;
+    --coral: #e76f51;
+    --gold: #e9c46a;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(180deg, #18314f 0%, var(--bg) 40%);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header { text-align: center; padding: 72px 0 48px; }
+  header img { width: 128px; height: 128px; image-rendering: pixelated; border-radius: 24px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  h1 { font-size: 3rem; margin-top: 20px; letter-spacing: -.02em; }
+  .tagline { font-size: 1.25rem; color: var(--ink-dim); margin-top: 8px; }
+  .badges { margin-top: 18px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    background: var(--bg-card-2); color: var(--ink-dim); font-size: .82rem;
+    padding: 5px 12px; border-radius: 999px; border: 1px solid #24466b;
+  }
+  .cta { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 26px; border-radius: 10px; font-weight: 600;
+    text-decoration: none; transition: transform .12s ease, filter .12s ease;
+  }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+  .btn-primary { background: var(--teal); color: #062420; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid #2e5a8a; }
+  section { padding: 40px 0; }
+  h2 { font-size: 1.7rem; margin-bottom: 20px; }
+  h2 .accent { color: var(--gold); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--bg-card); border: 1px solid #1f3c5e; border-radius: var(--radius);
+    padding: 22px;
+  }
+  .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .card p { color: var(--ink-dim); font-size: .95rem; }
+  .card .emoji { font-size: 1.6rem; display: block; margin-bottom: 10px; }
+  .steps { counter-reset: step; display: grid; gap: 14px; }
+  .step {
+    background: var(--bg-card); border: 1px solid #1f3c5e; border-radius: var(--radius);
+    padding: 18px 22px 18px 64px; position: relative;
+  }
+  .step::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--coral); color: #2b0f06; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step p { color: var(--ink-dim); font-size: .95rem; }
+  .step strong { color: var(--ink); }
+  code, kbd {
+    background: #0a1420; border: 1px solid #1f3c5e; border-radius: 6px;
+    padding: 2px 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .9em;
+    color: var(--gold);
+  }
+  pre {
+    background: #0a1420; border: 1px solid #1f3c5e; border-radius: var(--radius);
+    padding: 18px 22px; overflow-x: auto; margin-top: 14px;
+  }
+  pre code { background: none; border: none; padding: 0; color: var(--ink); }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid #1f3c5e; font-size: .95rem; }
+  th { color: var(--ink-dim); font-weight: 600; }
+  td code { white-space: nowrap; }
+  footer {
+    margin-top: 40px; padding: 36px 0 48px; border-top: 1px solid #1f3c5e;
+    text-align: center; color: var(--ink-dim); font-size: .9rem;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+  @media (max-width: 560px) { h1 { font-size: 2.2rem; } header { padding-top: 48px; } }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <img src="icon.png" alt="Waymark icon — a pixel-art house inside a map pin" width="128" height="128">
+  <h1>Waymark</h1>
+  <p class="tagline">A simple <code>/home</code> mod for Fabric servers.</p>
+  <div class="badges">
+    <span class="badge">Minecraft 26.1.2 – 26.2</span>
+    <span class="badge">Fabric</span>
+    <span class="badge">Server-side only</span>
+    <span class="badge">MIT licensed</span>
+  </div>
+  <div class="cta">
+    <a class="btn btn-primary" href="https://modrinth.com/mod/waymark">Download on Modrinth</a>
+    <a class="btn btn-ghost" href="https://github.com/mbreyno/waymark">View on GitHub</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>What it <span class="accent">does</span></h2>
+    <div class="cards">
+      <div class="card">
+        <span class="emoji">🛏️</span>
+        <h3>Three homes, one menu</h3>
+        <p>Type <code>/home</code> and a menu opens with your three home slots. Empty slots show <strong>New Home</strong> — click one to claim it right where you stand.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">✏️</span>
+        <h3>Name everything</h3>
+        <p>When you create a home you're asked to name it, and you can rename it any time. The name shows up right on the menu button.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🌀</span>
+        <h3>Teleport, rename, delete</h3>
+        <p>Click an existing home to open its options: teleport back to the exact spot where it was created, give it a new name, or delete it.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🪶</span>
+        <h3>Nothing to install for players</h3>
+        <p>Waymark runs entirely on the server using vanilla menus. Players on unmodded clients get the full experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it <span class="accent">works</span></h2>
+    <div class="steps">
+      <div class="step"><p><strong>Type <code>/home</code>.</strong> A menu opens with your three home slots.</p></div>
+      <div class="step"><p><strong>Click a “New Home” slot.</strong> An anvil screen asks you to name the home. Confirm, and the home is saved at the exact spot you were standing.</p></div>
+      <div class="step"><p><strong>Click an existing home</strong> to open its options: <strong>Teleport</strong> brings you back to where the home was created, <strong>Rename</strong> asks for a new name, and <strong>Delete</strong> frees the slot back to “New Home”.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Install <span class="accent">on your server</span></h2>
+    <div class="steps">
+      <div class="step"><p>Install <strong>Fabric Loader</strong> on your Minecraft <strong>26.1.2 – 26.2</strong> server.</p></div>
+      <div class="step"><p>Drop <strong>Fabric API</strong> and <strong>Waymark</strong> into the server's <code>mods/</code> folder.</p></div>
+      <div class="step"><p>Restart the server. That's it — players can use <code>/home</code> immediately.</p></div>
+    </div>
+    <pre><code>server/
+├── mods/
+│   ├── fabric-api-0.154.x.jar
+│   └── waymark-1.0.0.jar
+└── ...</code></pre>
+  </section>
+
+  <section>
+    <h2>Good to <span class="accent">know</span></h2>
+    <table>
+      <tr><th>Command</th><td><code>/home</code> — opens the home menu (that's the only command!)</td></tr>
+      <tr><th>Homes per player</th><td>3</td></tr>
+      <tr><th>Dimensions</th><td>Homes work across the Overworld, Nether, and End</td></tr>
+      <tr><th>Storage</th><td>Saved per world in <code>waymark_homes.json</code> — survives restarts, no database needed</td></tr>
+      <tr><th>Requires</th><td>Fabric Loader ≥ 0.19, Fabric API, Java 25+</td></tr>
+      <tr><th>Client mod?</th><td>Not needed. Vanilla clients see everything.</td></tr>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  <p>Waymark is free and open source under the MIT license.</p>
+  <p style="margin-top:6px">
+    <a href="https://modrinth.com/mod/waymark">Modrinth</a> ·
+    <a href="https://github.com/mbreyno/waymark">GitHub</a> ·
+    <a href="https://github.com/mbreyno/waymark/issues">Report a bug</a>
+  </p>
+</footer>
+
+</body>
+</html>
