@@ -13,3 +13,4 @@ mod/out/
 # Vercel
 .vercel/
 .vercel
+.claude/

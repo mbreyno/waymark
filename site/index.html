@@ -84,10 +84,10 @@
   section { padding: 40px 0; }
   h2 { font-size: 1.7rem; margin-bottom: 20px; }
   h2 .accent { color: var(--gold); }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .card {
     background: var(--bg-card); border: 1px solid #1f3c5e; border-radius: var(--radius);
-    padding: 22px;
+    padding: 18px;
   }
   .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
   .card p { color: var(--ink-dim); font-size: .95rem; }
@@ -125,7 +125,8 @@
     text-align: center; color: var(--ink-dim); font-size: .9rem;
   }
   footer a { color: var(--teal); text-decoration: none; }
-  @media (max-width: 560px) { h1 { font-size: 2.2rem; } header { padding-top: 48px; } }
+  @media (max-width: 760px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { h1 { font-size: 2.2rem; } header { padding-top: 48px; } .cards { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
