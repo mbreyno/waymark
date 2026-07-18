@@ -125,7 +125,15 @@
     text-align: center; color: var(--ink-dim); font-size: .9rem;
   }
   footer a { color: var(--teal); text-decoration: none; }
-  @media (max-width: 760px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+  .shot { text-align: center; }
+  .shot img {
+    width: 100%; height: auto; display: block;
+    border: 3px solid var(--teal); border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  }
+  .shot figcaption { color: var(--ink-dim); font-size: .88rem; margin-top: 10px; }
+  @media (max-width: 760px) { .cards { grid-template-columns: repeat(2, 1fr); } .shots { grid-template-columns: 1fr; } }
   @media (max-width: 560px) { h1 { font-size: 2.2rem; } header { padding-top: 48px; } .cards { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -172,6 +180,20 @@
         <h3>Nothing to install for players</h3>
         <p>Waymark runs entirely on the server using vanilla menus. Players on unmodded clients get the full experience.</p>
       </div>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="screenshot-menu.png" alt="The /home menu in-game: a chest screen titled Waymark — Your Homes with three bed buttons" loading="lazy">
+        <figcaption><code>/home</code> — your three home slots</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="screenshot-options.png" alt="A home's options menu in-game with a Teleport ender pearl button, rename, delete, and back buttons" loading="lazy">
+        <figcaption>Click a home — teleport, rename, or delete</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="screenshot-naming.png" alt="The anvil naming screen in-game titled Name this home with a text field reading Home 1" loading="lazy">
+        <figcaption>Name it right in the anvil screen</figcaption>
+      </figure>
     </div>
   </section>
 
